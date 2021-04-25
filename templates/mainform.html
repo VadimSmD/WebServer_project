@@ -1,0 +1,21 @@
+{% extends "index.html "%}
+{% block content%}
+
+{% if show == 1 %}
+<a type="button" class="btn btn-dark btn-lg btn-block" href="/send">Написать сообщение</a>
+<a type="button" class="btn btn-dark btn-lg btn-block" href="/send_file_to">Отправить файл</a>
+<a type="button" class="btn btn-dark btn-lg btn-block" href="/sended">Отправленные сообщения</a>
+<a type="button" class="btn btn-dark btn-lg btn-block" href="/myfiles">Полученные файлы</a>
+
+{% for mail in ids %}
+<a type="button" class="btn btn-dark btn-lg btn-block" href={{mail[0]}}>Письмо от: {{mail[1]}}, с темой: {{mail[2]}} от {{mail[3]}}</a>  
+{% endfor %}
+
+{% endif %}
+
+{% if show == 0 %}
+<div class="alert alert-danger" role="alert">
+    Вы не авторизованны.
+</div>
+{% endif %}
+{% endblock %}

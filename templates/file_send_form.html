@@ -1,0 +1,35 @@
+{% extends "index.html "%}
+{% block content%}
+
+{% if show == 1 %}
+<form action="" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <p>
+        Получатель:<br>
+        {{ form.name(class="form-control", type="text") }}<br>
+        {% for error in form.name.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+    </p>
+    <p>
+        Файл:<br>
+        {{ form.file(class="form-control-file", type="file") }}<br>
+        {% for error in form.file.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-dark btn-lg") }}</p>
+</form>
+
+{% endif %}
+
+{% if show == 0 %}
+<div class="alert alert-danger" role="alert">
+    Вы не авторизованны.
+</div>
+{% endif %}
+{% endblock %}

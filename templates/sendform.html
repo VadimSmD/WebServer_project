@@ -1,0 +1,44 @@
+{% extends "index.html "%}
+{% block content%}
+
+{% if show == 1 %}
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        Получатель:<br>
+        {{ form.name(class="form-control", type="text") }}<br>
+        {% for error in form.name.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+    </p>
+    <p>
+        Тема:<br>
+        {{ form.thema(class="form-control", type="text") }}<br>
+        {% for error in form.thema.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+    </p>
+    <p>
+        Сообщение:<br>
+        {{ form.text(class="form-control", type="text") }}<br>
+        {% for error in form.text.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-dark btn-lg") }}</p>
+</form>
+
+{% endif %}
+
+{% if show == 0 %}
+<div class="alert alert-danger" role="alert">
+    Вы не авторизованны.
+</div>
+{% endif %}
+{% endblock %}

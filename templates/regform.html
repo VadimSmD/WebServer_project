@@ -1,0 +1,67 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <h1>Регистрация</h1>
+    {% if wp == 1 %}
+        <div class="alert alert-danger" role="alert">
+            Пароли не совпадают или в пароле меньше 10 знаков и/или он не включает заглавные буквы и цифры!
+        </div>
+    {% endif %}
+    {% if wp == 3 %}
+        <div class="alert alert-danger" role="alert">
+            Аккаунт уже зарегистрирован.
+        </div>
+    {% endif %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            Email:<br>
+            {{ form.email(class="form-control", type="email", value=mail_pr) }}<br>
+            {% for error in form.email.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            Ваш пароль:<br>
+            {{ form.password(class="form-control", type="password", value=pas_pr) }}<br>
+            {% for error in form.password.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            Повторный ввод пароля:<br>
+            {{ form.password_rep(class="form-control", type="password", value=pas_rep_pr) }}<br>
+            {% for error in form.password.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            Ваш ник на сайте:<br>
+            {{ form.name(class="form-control", type="text", value=nick_pr) }}<br>
+            {% for error in form.name.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        {% if wp == 2%}
+        <p>
+            Ваш код регистрации (придёт на указанную почту):<br>
+            {{ form.cod(class="form-control", type="text") }}<br>
+            {% for error in form.name.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        {% endif%}
+        <p>{{ form.submit(type="submit", class="btn btn-dark btn-lg", value=addition) }}</p>
+    </form>
+
+{% endblock %}

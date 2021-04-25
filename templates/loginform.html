@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1>Авторизация</h1>
+{% if w == 1 %}
+        <div class="alert alert-danger" role="alert">
+            Введён неверный пароль
+        </div>
+{% endif %}
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        Email:<br>
+        {{ form.email(class="form-control", type="email", value=mail_pr) }}<br>
+        {% for error in form.email.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+    </p>
+    <p>
+        Ваш пароль:<br>
+        {{ form.password(class="form-control", type="password", value=pas_pr) }}<br>
+        {% for error in form.password.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-dark btn-lg", value=addition) }}</p>
+</form>
+
+{% endblock %}

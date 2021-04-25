@@ -1,0 +1,17 @@
+{% extends "index.html "%}
+{% block content%}
+
+{% if show == 1 %}
+<div class="alert alert-dark" role="alert"><b>От: {{sender}}</b></div>
+<div class="alert alert-dark" role="alert"><b>Дата: {{date}}</b></div>
+<div class="alert alert-dark" role="alert"><b>Тема: {{thema}}</b></div>
+<div class="alert alert-dark" role="alert"><b>Содержание:</b></div>
+<div class="alert alert-secondary" role="alert">{{content}}</div>
+{% endif %}
+
+{% if show == 0 %}
+<div class="alert alert-danger" role="alert">
+    Вы не авторизованны.
+</div>
+{% endif %}
+{% endblock %}
